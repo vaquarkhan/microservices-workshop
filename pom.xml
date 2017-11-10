@@ -9,6 +9,6 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>article</module>
+		<module>stock</module>
 	</modules>
 </project>
