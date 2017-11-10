@@ -1,4 +1,4 @@
-package com.predic8.articles;
+package com.predic8.workshop.stock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.predic8.articles.event;
+package com.predic8.workshop.stock.event;
 
 import lombok.Value;
 

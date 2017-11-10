@@ -1,4 +1,4 @@
-package com.predic8.articles.error;
+package com.predic8.workshop.stock.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,7 +1,7 @@
-package com.predic8.articles.rest;
+package com.predic8.workshop.stock.rest;
 
-import com.predic8.articles.domain.Article;
-import com.predic8.articles.service.ArticleCommandService;
+import com.predic8.workshop.stock.domain.Article;
+import com.predic8.workshop.stock.service.ArticleCommandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

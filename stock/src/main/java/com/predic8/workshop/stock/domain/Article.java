@@ -1,4 +1,4 @@
-package com.predic8.articles.domain;
+package com.predic8.workshop.stock.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

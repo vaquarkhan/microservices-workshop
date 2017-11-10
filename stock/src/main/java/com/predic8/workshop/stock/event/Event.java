@@ -1,4 +1,4 @@
-package com.predic8.articles.event;
+package com.predic8.workshop.stock.event;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

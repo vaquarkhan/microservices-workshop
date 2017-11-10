@@ -1,7 +1,7 @@
-package com.predic8.articles.service;
+package com.predic8.workshop.stock.service;
 
-import com.predic8.articles.domain.Article;
-import com.predic8.articles.event.CreateArticle;
+import com.predic8.workshop.stock.domain.Article;
+import com.predic8.workshop.stock.event.CreateArticle;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package com.predic8.articles.service;
+package com.predic8.workshop.stock.service;
 
-import com.predic8.articles.domain.Article;
-import com.predic8.articles.repository.ArticleRepository;
+import com.predic8.workshop.stock.domain.Article;
+import com.predic8.workshop.stock.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
-package com.predic8.articles.rest;
+package com.predic8.workshop.stock.rest;
 
-import com.predic8.articles.domain.Article;
-import com.predic8.articles.error.NotFoundException;
-import com.predic8.articles.service.ArticleQueryService;
+import com.predic8.workshop.stock.domain.Article;
+import com.predic8.workshop.stock.error.NotFoundException;
+import com.predic8.workshop.stock.service.ArticleQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
