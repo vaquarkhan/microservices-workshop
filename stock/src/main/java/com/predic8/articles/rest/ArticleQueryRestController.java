@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/articles")
 @RestController
-public class ArticleCommandQueryRestController {
+public class ArticleQueryRestController {
 	private final ArticleQueryService articleQueryService;
 
 	@GetMapping
