@@ -1,0 +1,8 @@
+{
+  "action": "create",
+  "type": "article",
+  "object": {
+    "name": "Oranges",
+    "price": 6.99
+  }
+}
