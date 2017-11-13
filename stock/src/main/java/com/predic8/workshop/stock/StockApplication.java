@@ -2,11 +2,10 @@ package com.predic8.workshop.stock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.kafka.annotation.EnableKafka;
 
 @SpringBootApplication
-public class ArticlesApplication {
+public class StockApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(ArticlesApplication.class, args);
+		SpringApplication.run(StockApplication.class, args);
 	}
 }

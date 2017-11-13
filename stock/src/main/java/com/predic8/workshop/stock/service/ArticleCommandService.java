@@ -12,6 +12,6 @@ public class ArticleCommandService {
 	private final KafkaTemplate<String, CreateArticle> kafkaTemplate;
 
 	public void save(String uuid, Article article) {
-		kafkaTemplate.send("article", uuid, new CreateArticle(article.getName(), article.getDescription(), article.getPrice()));
+		kafkaTemplate.send("stock", uuid, new CreateArticle(article.getName(), article.getDescription(), article.getPrice()));
 	}
 }
