@@ -2,7 +2,9 @@
   "action": "create",
   "type": "article",
   "object": {
+    "uuid": 5,
     "name": "Peaches",
-    "price": 0.99
+    "price": 0.99,
+    "stock": 100
   }
 }
