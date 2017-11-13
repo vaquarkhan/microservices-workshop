@@ -2,7 +2,7 @@
   "action": "create",
   "type": "article",
   "object": {
-    "uuid": 1,
+    "uuid": "cab08236-1924-4f90-975d-9e056ed14c48",
     "name": "Apples",
     "price": 1.99,
     "stock": 10

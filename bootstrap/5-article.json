@@ -2,7 +2,7 @@
   "action": "create",
   "type": "article",
   "object": {
-    "uuid": 5,
+    "uuid": "9748e6e2-0483-4423-affc-3d9404ba693d",
     "name": "Peaches",
     "price": 0.99,
     "stock": 100
