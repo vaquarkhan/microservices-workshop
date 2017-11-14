@@ -9,6 +9,8 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>quantity</module>
+		<module>stock</module>
+		<module>checkout</module>
+		<module>payment</module>
 	</modules>
 </project>

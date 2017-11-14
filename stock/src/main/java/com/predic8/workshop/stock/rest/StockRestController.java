@@ -18,7 +18,7 @@ public class StockRestController {
 
 	@GetMapping("/{uuid}")
 	public Stock show(@PathVariable String uuid) {
-		Stock stock = this.articles.get(uuid);
+		Stock stock = articles.get(uuid);
 
 		if (stock == null) {
 			throw new NotFoundException();
