@@ -2,7 +2,7 @@
 
     $ https://github.com/edenhill/kafkacat
 
-## Read messages from Kafka 'stock' topic, print to stdout
+## Read messages from Kafka 'quantity' topic, print to stdout
 
     ./kafkacat -b localhost:9092 -t shop
 

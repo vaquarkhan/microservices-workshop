@@ -1,9 +1,7 @@
-package com.predic8.workshop.stock.dto;
+package de.predic8.workshop.checkout.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@AllArgsConstructor
 @Data
 public class Stock {
 	private String uuid;
