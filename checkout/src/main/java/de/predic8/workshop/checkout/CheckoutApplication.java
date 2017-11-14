@@ -5,8 +5,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 @SpringBootApplication
 public class CheckoutApplication {
+	@Bean
+	public Map<String, BigDecimal> prices() {
+		return new ConcurrentHashMap<>();
+	}
+
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();

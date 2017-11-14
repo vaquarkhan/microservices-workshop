@@ -1,6 +1,7 @@
 package de.predic8.workshop.checkout.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.predic8.workshop.checkout.dto.Article;
 import de.predic8.workshop.checkout.dto.Basket;
 import de.predic8.workshop.checkout.dto.Stock;
 import de.predic8.workshop.checkout.event.Operation;
@@ -15,7 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -24,9 +31,10 @@ public class CheckoutRestController {
 	private final KafkaTemplate<String, Operation> kafkaTemplate;
 	private final RestTemplate restTemplate;
 	private final ObjectMapper objectMapper;
+	private final Map<String, BigDecimal> prices;
 
 	@PostMapping("/checkout")
-	public ResponseEntity<?> save(@RequestBody Basket basket, UriComponentsBuilder uriComponentsBuilder) {
+	public ResponseEntity<?> save(@RequestBody Basket basket) {
 		if (!articlesAvailable(basket)) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
@@ -35,12 +43,11 @@ public class CheckoutRestController {
 
 		String uuid = UUID.randomUUID().toString();
 		basket.setUuid(uuid);
+		basket.getItems().forEach(i -> i.setPrice(prices.get(i.getArticle())));
 
 		kafkaTemplate.send("shop", new Operation("basket", "create", objectMapper.valueToTree(basket)));
 
-		String location = uriComponentsBuilder.path("/checkout/{uuid}").buildAndExpand(uuid).toUriString();
-
-		return ResponseEntity.accepted().header("Location", location).build();
+		return ResponseEntity.accepted().build();
 	}
 
 	private boolean articlesAvailable(Basket basket) {

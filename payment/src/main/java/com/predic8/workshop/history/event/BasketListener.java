@@ -33,8 +33,10 @@ public class BasketListener {
 	}
 
 	private static Payment toPayment(Basket basket) {
-		BigDecimal amount = basket.getItems().stream().map(Article::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
-
-		return new Payment(basket.getCustomer(), amount, basket.getUuid());
+		return new Payment(
+			basket.getCustomer(),
+			basket.getItems().stream().map(Article::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add),
+			basket.getUuid()
+		);
 	}
 }
