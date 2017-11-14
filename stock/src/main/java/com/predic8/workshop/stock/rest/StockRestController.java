@@ -1,6 +1,6 @@
 package com.predic8.workshop.stock.rest;
 
-import com.predic8.workshop.stock.dto.Article;
+import com.predic8.workshop.stock.dto.Stock;
 import com.predic8.workshop.stock.error.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RequiredArgsConstructor
-@RequestMapping("/stock")
+@RequestMapping("/stocks")
 @RestController
 public class StockRestController {
-	private final Map<String, Article> stock;
+	private final Map<String, Stock> articles;
 
 	@GetMapping("/{uuid}")
-	public Article show(@PathVariable String uuid) {
-		Article article = this.stock.get(uuid);
+	public Stock show(@PathVariable String uuid) {
+		Stock stock = this.articles.get(uuid);
 
-		if (article == null) {
+		if (stock == null) {
 			throw new NotFoundException();
 		}
 
-		return article;
+		return stock;
 	}
 }

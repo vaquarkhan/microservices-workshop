@@ -1,8 +1,7 @@
 package com.predic8.workshop.stock.event;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.predic8.workshop.stock.dto.Article;
+import com.predic8.workshop.stock.dto.Stock;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -16,26 +15,24 @@ import java.util.Map;
 @Service
 public class ShopListener {
 	private final ObjectMapper objectMapper;
-	private final Map<String, Article> articles;
+	private final Map<String, Stock> articles;
 
 	@KafkaListener(topics = "shop")
-	public void listen(String payload) throws IOException {
-		JsonNode event = objectMapper.readTree(payload);
-
-		if (!event.get("type").asText().equals("article")) {
-			log.info("Unknown type: {}", event.get("type").asText());
+	public void listen(Operation operation) throws IOException {
+		if (!operation.getType().equals("article")) {
+			log.info("Unknown type: {}", operation.getType());
 
 			return;
 		}
 
-		if (!event.get("action").asText().equals("create")) {
-			log.error("Unknown action: {}", event.get("action").asText());
+		if (!operation.getAction().equals("create")) {
+			log.error("Unknown action: {}", operation.getAction());
 
 			return;
 		}
 
-		JsonNode object = event.get("object");
+		Stock stock = objectMapper.convertValue(operation.getObject(), Stock.class);
 
-		articles.put(object.get("uuid").asText(), objectMapper.readValue(object.asText(), Article.class));
+		articles.put(stock.getUuid(), stock);
 	}
 }
