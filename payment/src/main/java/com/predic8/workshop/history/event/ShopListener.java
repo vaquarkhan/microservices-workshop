@@ -35,6 +35,7 @@ public class ShopListener {
 
 	private static Payment toPayment(Basket basket) {
 		return new Payment(
+			basket.getCustomer(),
 			basket.getItems()
 			      .stream()
 			      .map(Article::getPrice)
