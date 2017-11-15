@@ -19,7 +19,7 @@ import java.util.Map;
 @Service
 public class ShopListener {
 	private final ObjectMapper objectMapper;
-	private final Map<String, List<Payment>> payments;
+	private final Map<String, Payment> payments;
 
 	@KafkaListener(topics = "shop")
 	public void listen(Operation operation) {
@@ -30,7 +30,7 @@ public class ShopListener {
 		}
 
 		Basket basket = objectMapper.convertValue(operation.getObject(), Basket.class);
-		payments.computeIfAbsent(basket.getUuid(), k -> new ArrayList<>()).add(toPayment(basket));
+		payments.put(basket.getUuid(), toPayment(basket));
 	}
 
 	private static Payment toPayment(Basket basket) {

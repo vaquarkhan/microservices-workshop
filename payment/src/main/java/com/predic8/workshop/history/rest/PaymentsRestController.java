@@ -14,10 +14,10 @@ import java.util.Map;
 @RequestMapping("/payments")
 @RestController
 public class PaymentsRestController {
-	private final Map<String, List<Payment>> payments;
+	private final Map<String, Payment> payments;
 
 	@GetMapping("/{uuid}")
-	public List<Payment> index(@PathVariable String uuid) {
+	public Payment index(@PathVariable String uuid) {
 		return payments.get(uuid);
 	}
 }

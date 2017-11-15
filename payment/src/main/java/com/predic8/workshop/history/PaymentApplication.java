@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @SpringBootApplication
 public class PaymentApplication {
 	@Bean
-	public Map<String, List<Payment>> payments() {
+	public Map<String, Payment> payments() {
 		return new ConcurrentHashMap<>();
 	}
 
