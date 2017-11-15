@@ -8,7 +8,5 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Data
 public class Payment {
-	private String customer;
 	private BigDecimal amount;
-	private String basket;
 }

@@ -34,9 +34,10 @@ public class BasketListener {
 
 	private static Payment toPayment(Basket basket) {
 		return new Payment(
-			basket.getCustomer(),
-			basket.getItems().stream().map(Article::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add),
-			basket.getUuid()
+			basket.getItems()
+			      .stream()
+			      .map(Article::getPrice)
+			      .reduce(BigDecimal.ZERO, BigDecimal::add)
 		);
 	}
 }
