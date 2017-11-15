@@ -1,8 +1,6 @@
 package de.predic8.workshop.checkout.dto;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 

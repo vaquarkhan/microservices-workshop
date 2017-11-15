@@ -10,13 +10,14 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class BasketListener {
+public class ShopListener {
 	private final ObjectMapper objectMapper;
 	private final Map<String, List<Payment>> payments;
 
@@ -30,7 +31,7 @@ public class BasketListener {
 
 
 		Basket basket = objectMapper.convertValue(operation.getObject(), Basket.class);
-		payments.get(basket.getCustomer()).add(toPayment(basket));
+		payments.computeIfAbsent(basket.getCustomer(), k -> new ArrayList<>()).add(toPayment(basket));
 	}
 
 	private static Payment toPayment(Basket basket) {

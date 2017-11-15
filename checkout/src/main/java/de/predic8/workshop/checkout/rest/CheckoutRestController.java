@@ -1,8 +1,8 @@
 package de.predic8.workshop.checkout.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.predic8.workshop.checkout.dto.Article;
 import de.predic8.workshop.checkout.dto.Basket;
+import de.predic8.workshop.checkout.dto.BasketIdentifier;
 import de.predic8.workshop.checkout.dto.Stock;
 import de.predic8.workshop.checkout.event.Operation;
 import lombok.RequiredArgsConstructor;
@@ -14,15 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -47,7 +42,9 @@ public class CheckoutRestController {
 
 		kafkaTemplate.send("shop", new Operation("basket", "create", objectMapper.valueToTree(basket)));
 
-		return ResponseEntity.accepted().build();
+		return ResponseEntity
+			.accepted()
+			.body(new BasketIdentifier(uuid));
 	}
 
 	private boolean articlesAvailable(Basket basket) {
