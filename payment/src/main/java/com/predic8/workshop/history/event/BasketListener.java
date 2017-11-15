@@ -28,6 +28,7 @@ public class BasketListener {
 			return;
 		}
 
+
 		Basket basket = objectMapper.convertValue(operation.getObject(), Basket.class);
 		payments.get(basket.getCustomer()).add(toPayment(basket));
 	}
