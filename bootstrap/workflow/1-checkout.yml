@@ -1,3 +1,5 @@
+# Request
+
 # POST http://localhost:8081/checkouts
 
 {
@@ -12,4 +14,18 @@
       "quantity": 3
     }
   ]
+}
+
+# Response
+
+{
+  "basket": <id>
+}
+
+# Request
+
+# GET http://localhost:8082/payments/<id>
+
+{
+    "amount": 4.98
 }
