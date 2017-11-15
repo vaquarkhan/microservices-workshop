@@ -1,0 +1,52 @@
+[
+  {
+    "action": "create",
+    "type": "article",
+    "object": {
+      "uuid": "cab08236-1924-4f90-975d-9e056ed14c48",
+      "name": "Apples",
+      "price": 1.99,
+      "quantity": 10
+    }
+  },
+  {
+    "action": "create",
+    "type": "article",
+    "object": {
+      "uuid": "d996413a-21fb-4c12-b4a8-64996876505b",
+      "name": "Bananas",
+      "price": 2.99,
+      "quantity": 10
+    }
+  },
+  {
+    "action": "create",
+    "type": "article",
+    "object": {
+      "uuid": "e5924b54-4217-4ffd-9f8d-11fbfa75014a",
+      "name": "Oranges",
+      "price": 6.99,
+      "quantity": 20
+    }
+  },
+  {
+    "action": "create",
+    "type": "article",
+    "object": {
+      "uuid": "b32ca647-b880-4cd3-ab51-224dcd4567e8",
+      "name": "Pineapples",
+      "price": 6.99,
+      "quantity": 5
+    }
+  },
+  {
+    "action": "create",
+    "type": "article",
+    "object": {
+      "uuid": "9748e6e2-0483-4423-affc-3d9404ba693d",
+      "name": "Peaches",
+      "price": 0.99,
+      "quantity": 100
+    }
+  }
+]
