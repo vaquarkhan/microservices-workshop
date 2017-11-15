@@ -29,9 +29,8 @@ public class ShopListener {
 			return;
 		}
 
-
 		Basket basket = objectMapper.convertValue(operation.getObject(), Basket.class);
-		payments.computeIfAbsent(basket.getCustomer(), k -> new ArrayList<>()).add(toPayment(basket));
+		payments.computeIfAbsent(basket.getUuid(), k -> new ArrayList<>()).add(toPayment(basket));
 	}
 
 	private static Payment toPayment(Basket basket) {

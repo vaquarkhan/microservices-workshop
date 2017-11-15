@@ -28,7 +28,7 @@ public class CheckoutRestController {
 	private final ObjectMapper objectMapper;
 	private final Map<String, BigDecimal> prices;
 
-	@PostMapping("/checkout")
+	@PostMapping("/checkouts")
 	public ResponseEntity<?> save(@RequestBody Basket basket) {
 		if (!articlesAvailable(basket)) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
