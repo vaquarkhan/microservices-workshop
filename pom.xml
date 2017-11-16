@@ -12,5 +12,6 @@
 		<module>stock</module>
 		<module>checkout</module>
 		<module>payment</module>
+		<module>rating</module>
 	</modules>
 </project>

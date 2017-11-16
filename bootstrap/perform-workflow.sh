@@ -2,7 +2,7 @@
 
 # 1. Perform checkout request
 
-readonly basket_uuid=$(curl --request POST \
+basket_uuid=$(curl --request POST \
   --url http://localhost:8081/checkouts \
   --header 'content-type: application/json' \
   --cookie JSESSIONID=8ED36E6FF6B5061C680177D7358E1864 \
@@ -11,7 +11,7 @@ readonly basket_uuid=$(curl --request POST \
   "items": [
     {
       "article": "cab08236-1924-4f90-975d-9e056ed14c48",
-      "quantity": 3
+      "quantity": 300
     },
     {
       "article": "d996413a-21fb-4c12-b4a8-64996876505b",
@@ -19,6 +19,11 @@ readonly basket_uuid=$(curl --request POST \
     }
   ]
 }' | jq -r .basket)
+
+if (($? != 0 )); then
+    echo "Checkout failed"
+    exit
+fi
 
 # 2. Perform rating request
 

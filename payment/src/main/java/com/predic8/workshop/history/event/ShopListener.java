@@ -38,7 +38,7 @@ public class ShopListener {
 			basket.getCustomer(),
 			basket.getItems()
 			      .stream()
-			      .map(Article::getPrice)
+			      .map(i -> i.getPrice().multiply(new BigDecimal(i.getQuantity())))
 			      .reduce(BigDecimal.ZERO, BigDecimal::add)
 		);
 	}
