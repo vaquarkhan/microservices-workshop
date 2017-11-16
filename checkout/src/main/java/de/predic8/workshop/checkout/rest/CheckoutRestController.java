@@ -30,7 +30,7 @@ public class CheckoutRestController {
 
 	@PostMapping("/checkouts")
 	public ResponseEntity<?> save(@RequestBody Basket basket) {
-		if (!articlesAvailable(basket)) {
+		if (!areArticlesAvailable(basket)) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 
@@ -47,7 +47,7 @@ public class CheckoutRestController {
 			.body(new BasketIdentifier(uuid));
 	}
 
-	private boolean articlesAvailable(Basket basket) {
+	private boolean areArticlesAvailable(Basket basket) {
 		return basket.getItems().stream().allMatch(item -> {
 				Stock stock = restTemplate.getForObject("http://localhost:8080/stocks/{uuid}", Stock.class, item.getArticle());
 

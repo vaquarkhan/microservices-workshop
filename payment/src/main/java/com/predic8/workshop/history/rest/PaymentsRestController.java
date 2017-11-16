@@ -1,9 +1,10 @@
 package com.predic8.workshop.history.rest;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.predic8.workshop.history.dto.Payment;
 import com.predic8.workshop.history.dto.PaymentRequest;
+import com.predic8.workshop.history.dto.PaymentSucceeded;
+import com.predic8.workshop.history.dto.RatingRequest;
 import com.predic8.workshop.history.event.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -34,9 +35,11 @@ public class PaymentsRestController {
 
 	@PostMapping("/{uuid}")
 	public ResponseEntity<?> save(@PathVariable String uuid, @RequestBody PaymentRequest paymentRequest) {
-		restTemplate.postForEntity("http://localhost:8083/ratings/{uuid}", paymentRequest, Void.class, uuid);
+		// what happens if the HTTP call succeeds but sending the event does not?
+		RatingRequest ratingRequest = new RatingRequest(payments.get(uuid).getCustomer(), payments.get(uuid).getAmount());
+		restTemplate.postForEntity("http://localhost:8083/ratings", ratingRequest, Void.class, uuid);
 
-		kafkaTemplate.send("shop", new Operation("create", "payment", objectMapper.valueToTree(paymentRequest)));
+		kafkaTemplate.send("shop", new Operation("create", "payment", objectMapper.valueToTree(new PaymentSucceeded(ratingRequest, paymentRequest))));
 
 		return ResponseEntity.accepted().build();
 	}

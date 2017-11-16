@@ -5,7 +5,7 @@ import lombok.Value;
 import java.math.BigDecimal;
 
 @Value
-public class PaymentRequest {
-	String customerId;
+public class RatingRequest {
+	String customer;
 	BigDecimal amount;
 }
