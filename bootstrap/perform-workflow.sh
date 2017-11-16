@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# 1. Perform checkout
+# 1. Perform checkout request
 
-basket_uuid=$(curl --request POST \
+readonly basket_uuid=$(curl --request POST \
   --url http://localhost:8081/checkouts \
   --header 'content-type: application/json' \
   --cookie JSESSIONID=8ED36E6FF6B5061C680177D7358E1864 \
@@ -20,9 +20,7 @@ basket_uuid=$(curl --request POST \
   ]
 }' | jq -r .basket)
 
-echo "$basket_uuid"
-
-# 2. Perform payment
+# 2. Perform rating request
 
 curl --request POST \
   --url "http://localhost:8082/payments/$basket_uuid" \
