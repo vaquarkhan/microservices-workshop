@@ -19,12 +19,18 @@ public class ShopListener {
 
 	@KafkaListener(topics = "shop")
 	public void listen(Operation operation) throws IOException {
-		switch (operation.getType()) {
-			case "article":
-				articles.add(objectMapper.convertValue(operation.getObject(), Article.class));
-				return;
-			default:
-				log.info("Unknown type: {}", operation.getType());
+		if (!operation.getType().equals("article")) {
+			log.info("Unknown type {}", operation.getType());
+
+			return;
 		}
+
+		if (!operation.getAction().equals("create")) {
+			log.info("Unknown action {}", operation.getAction());
+
+			return;
+		}
+
+		articles.add(objectMapper.convertValue(operation.getObject(), Article.class));
 	}
 }
