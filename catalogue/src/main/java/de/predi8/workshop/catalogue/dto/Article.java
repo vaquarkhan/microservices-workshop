@@ -9,5 +9,4 @@ public class Article {
 	String uuid;
 	String name;
 	BigDecimal price;
-	long quantity;
 }
