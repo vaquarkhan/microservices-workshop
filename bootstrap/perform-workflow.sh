@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO catalogue service
-
 # 1. Perform checkout request
 
 echo 'Performing checkout request'
@@ -9,7 +7,6 @@ echo 'Performing checkout request'
 basket_uuid=$(curl --request POST \
   --url http://localhost:8085/checkout-service/checkouts \
   --header 'content-type: application/json' \
-  --cookie JSESSIONID=8ED36E6FF6B5061C680177D7358E1864 \
   --data '{
   "customer": "41440721-19db-4a02-8fd8-b6a0f3427d46",
   "items": [
@@ -31,7 +28,6 @@ echo "Performing payment request with basket id $basket_uuid"
 curl --request POST \
   --url "http://localhost:8085/payment-service/payments/$basket_uuid" \
   --header 'content-type: application/json' \
-  --cookie JSESSIONID=8ED36E6FF6B5061C680177D7358E1864 \
   --data '{
 	"method": "CC"
 }'

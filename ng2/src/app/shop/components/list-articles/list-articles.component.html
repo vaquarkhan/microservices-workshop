@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>
+        Produkte
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="container">
+        <ng-container *ngIf="products">
+          <ng-container *ngFor="let product of products">
+            <div class="row">
+              <div class="col-4">
+                <label>{{product.name}}</label>
+              </div>
+              <div class="col-4">
+                <label>{{product.price}}€</label>
+              </div>
+              <div class="col-4">
+                <input class="form-control" type="number" min="0" [(ngModel)]="product.buyNumber">
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+        <div class="row">
+          <div class="col">
+            <div class="btn btn-primary" (click)="buyProducts()">In den Warenkorb</div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  </div>
+
+</div>
+
+
