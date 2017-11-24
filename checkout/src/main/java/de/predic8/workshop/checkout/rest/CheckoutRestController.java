@@ -5,6 +5,7 @@ import de.predic8.workshop.checkout.dto.Basket;
 import de.predic8.workshop.checkout.dto.BasketIdentifier;
 import de.predic8.workshop.checkout.dto.Stock;
 import de.predic8.workshop.checkout.event.Operation;
+import de.predic8.workshop.checkout.service.CheckoutService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 public class CheckoutRestController {
+	private final CheckoutService checkoutService;
 	private final KafkaTemplate<String, Operation> kafkaTemplate;
 	private final RestTemplate restTemplate;
 	private final ObjectMapper objectMapper;
@@ -30,7 +32,7 @@ public class CheckoutRestController {
 
 	@PostMapping("/checkouts")
 	public ResponseEntity<?> save(@RequestBody Basket basket) {
-		if (!areArticlesAvailable(basket)) {
+		if (!checkoutService.areArticlesAvailable(basket)) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 
@@ -45,14 +47,5 @@ public class CheckoutRestController {
 		return ResponseEntity
 			.accepted()
 			.body(new BasketIdentifier(uuid));
-	}
-
-	private boolean areArticlesAvailable(Basket basket) {
-		return basket.getItems().stream().allMatch(item -> {
-				Stock stock = restTemplate.getForObject("http://localhost:8080/stocks/{uuid}", Stock.class, item.getArticle());
-
-				return stock.getQuantity() >= item.getQuantity();
-			}
-		);
 	}
 }
