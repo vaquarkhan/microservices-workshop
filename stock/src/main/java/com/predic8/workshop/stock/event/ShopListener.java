@@ -6,6 +6,8 @@ import com.predic8.workshop.stock.dto.Stock;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.annotation.PartitionOffset;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,10 @@ public class ShopListener {
 	private final ObjectMapper objectMapper;
 	private final Map<String, Stock> articles;
 
-	@KafkaListener(topics = "shop")
+	@KafkaListener(id = "stock-listener",
+			topicPartitions =
+					{ @TopicPartition(topic = "shop",
+							partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "0"))})
 	public void listen(Operation operation) throws IOException {
 		switch (operation.getType()) {
 			case "article":
