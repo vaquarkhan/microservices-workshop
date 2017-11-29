@@ -27,6 +27,9 @@ public class ShopListener {
 					{ @TopicPartition(topic = "shop",
 							partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "0"))})
 	public void listen(Operation operation) throws IOException {
+
+		log.info("Got Message: " + operation);
+
 		switch (operation.getType()) {
 			case "article":
 				handleArticle(operation.getAction(), objectMapper.convertValue(operation.getObject(), Stock.class));

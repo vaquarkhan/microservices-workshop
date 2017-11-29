@@ -18,3 +18,4 @@ zuul:
     payment-service: /payment-service/**
     catalogue-service: /catalogue-service/**
     checkout-service: /checkout-service/**
+    stock-service: /stock-service/**

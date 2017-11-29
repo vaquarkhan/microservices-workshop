@@ -31,6 +31,9 @@ public class CheckoutRestController {
 
 	@PostMapping("/checkouts")
 	public ResponseEntity<?> save(@RequestBody Basket basket) {
+
+		log.info("Checking out: " + basket);
+
 		if (!checkoutService.areArticlesAvailable(basket)) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}

@@ -1,4 +1,4 @@
-import {RouterModule, Routes} from '@angular/router';
+  import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from "@angular/core";
 import {ListArticlesComponent} from "./shop/components/list-articles/list-articles.component";
 import {BasketComponent} from "./shop/components/basket/basket.component";
