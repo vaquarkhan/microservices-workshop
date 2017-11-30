@@ -11,31 +11,35 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class ShopListener {
-	private final ObjectMapper objectMapper;
-	private final List<Article> articles;
+    private final ObjectMapper mapper;
+    private final Map<String, Article> articles;
 
-	@KafkaListener(id = "stock-listener",
-			topicPartitions =
-					{ @TopicPartition(topic = "shop",
-							partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "0"))})
-	public void listen(Operation operation) throws IOException {
-		if (!operation.getType().equals("article")) {
-			log.info("Unknown type {}", operation.getType());
+    @KafkaListener(id = "stock-listener",
+            topicPartitions =
+                    {@TopicPartition(topic = "shop",
+                            partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "0"))})
+    public void listen(Operation operation) throws IOException {
 
-			return;
-		}
+        if (!operation.getType().equals("article"))
+            return;
 
-		if (!operation.getAction().equals("create")) {
-			log.info("Unknown action {}", operation.getAction());
+        Article article = mapper.convertValue(operation.getObject(), Article.class);
 
-			return;
-		}
+        switch (operation.getAction()) {
+            case "update":
+            case "create":
+                articles.put(article.getUuid(), article);
+                return;
+            case "delete":
+                articles.remove(article.getUuid());
+        }
 
-		articles.add(objectMapper.convertValue(operation.getObject(), Article.class));
-	}
+
+    }
 }

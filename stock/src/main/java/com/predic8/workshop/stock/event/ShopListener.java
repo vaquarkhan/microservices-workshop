@@ -48,6 +48,8 @@ public class ShopListener {
 			case "update":
 				articles.put(stock.getUuid(), stock);
 				break;
+			case "delete":
+				articles.remove(stock.getUuid());
 			default:
 				log.info("Unknown action: {}", action);
 		}

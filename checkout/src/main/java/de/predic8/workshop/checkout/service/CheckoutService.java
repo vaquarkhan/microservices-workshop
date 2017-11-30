@@ -4,13 +4,13 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import de.predic8.workshop.checkout.dto.Basket;
 import de.predic8.workshop.checkout.dto.Stock;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cloud.sleuth.SpanName;
+//import org.springframework.cloud.sleuth.SpanName;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @RequiredArgsConstructor
 @Service
-@SpanName(value = "dd2")
+//@SpanName(value = "dd2")
 public class CheckoutService {
 	private final RestTemplate restTemplate;
 
