@@ -26,27 +26,27 @@ public class KafkaConfiguration {
 		return new DefaultKafkaConsumerFactory<>(kafkaProperties.buildConsumerProperties(), new StringDeserializer(), new JsonDeserializer<>(Operation.class));
 	}
 
-//	@Bean
-//	public ConcurrentKafkaListenerContainerFactory<String, Operation> kafkaListenerContainerFactory(ConsumerFactory<String, Operation> consumerFactory) {
-//		ConcurrentKafkaListenerContainerFactory<String, Operation> factory = new ConcurrentKafkaListenerContainerFactory<>();
-//		factory.setConsumerFactory(consumerFactory);
-//
-//		factory.getContainerProperties().setConsumerRebalanceListener(new ConsumerRebalanceListener() {
-//			@Override
-//			public void onPartitionsRevoked(Collection<TopicPartition> collection) {
-//
-//			}
-//
-//			@Override
-//			public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
-//				System.out.print("Assigned to: ");
-//
-//				for (TopicPartition partition : partitions) {
-//					System.out.print(partition + " ");
-//				}
-//			}
-//		});
-//
-//		return factory;
-//	}
+	@Bean
+	public ConcurrentKafkaListenerContainerFactory<String, Operation> kafkaListenerContainerFactory(ConsumerFactory<String, Operation> consumerFactory) {
+		ConcurrentKafkaListenerContainerFactory<String, Operation> factory = new ConcurrentKafkaListenerContainerFactory<>();
+		factory.setConsumerFactory(consumerFactory);
+
+		factory.getContainerProperties().setConsumerRebalanceListener(new ConsumerRebalanceListener() {
+			@Override
+			public void onPartitionsRevoked(Collection<TopicPartition> collection) {
+
+			}
+
+			@Override
+			public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
+				System.out.print("Assigned to: ");
+
+				for (TopicPartition partition : partitions) {
+					System.out.print(partition + " ");
+				}
+			}
+		});
+
+		return factory;
+	}
 }

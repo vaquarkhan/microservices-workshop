@@ -24,7 +24,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 public class CheckoutRestController {
+
 	private final CheckoutService checkoutService;
+
 	private final KafkaTemplate<String, Operation> kafkaTemplate;
 	private final ObjectMapper objectMapper;
 	private final Map<String, BigDecimal> prices;
