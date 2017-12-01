@@ -17,14 +17,12 @@ import java.util.Map;
 public class CatalogueRestController {
     private final Map<String, Article> articles;
 
-    @RequestMapping("/articles")
-    @GetMapping
+    @GetMapping("/articles")
     public Collection<Article> index() {
         return articles.values();
     }
 
-    @RequestMapping("/articles/{id}")
-    @GetMapping
+    @GetMapping("/articles/{id}")
     public Article get(@PathVariable String id) {
 
         Article article = articles.get(id);

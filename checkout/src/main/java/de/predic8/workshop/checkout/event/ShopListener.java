@@ -22,15 +22,12 @@ public class ShopListener {
 					{ @TopicPartition(topic = "shop",
 							partitionOffsets = @PartitionOffset(partition = "0", initialOffset = "0"))})
 	public void listen(Operation operation) throws IOException {
-		if (!operation.getType().equals("article")) {
-			log.info("Unknown type: {}", operation.getType());
 
+		if (!operation.getType().equals("article")) {
 			return;
 		}
 
 		if (!operation.getAction().equals("create")) {
-			log.info("Unknown action: {}", operation.getAction());
-
 			return;
 		}
 
